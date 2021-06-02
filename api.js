@@ -17,6 +17,19 @@ class MercadoBitcoinTrade{
         }
     }
 
+    getAccountInfo(){
+        return this.call('get_account_info',{});
+    }
+
+    placeBuyOrder(qty, limit_price){
+
+        return this.call('place_buy_order',{
+            coin_pair: `BRL${this.config.CURRENCY}`,
+            quantity: `${qty} `.substr(0,10),
+            limit_price: `${limit_price}`
+        })
+    }
+
     async call(method, parameters){
         const now = new Date().getTime();
         let queryString = qs.stringify({tapi_method:method, tapi_nonce:now});
@@ -38,6 +51,8 @@ class MercadoBitcoinTrade{
         }
         
         const response = await axios.post(ENDPOINT_TRADE_API, queryString, config)
+        if(response.data.error_message) throw new Error(response.data.error_message)
+        return response.data.response_data;
     }
 }
 
