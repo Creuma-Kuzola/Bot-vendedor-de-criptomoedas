@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Creuma-Kuzola/Bot-vendedor-de-criptomoedas#readme",
   "dependencies": {
     "axios": "^0.21.1",
-    "dotenv-safe": "^8.2.0"
+    "dotenv-safe": "^8.2.0",
+    "querystring": "^0.2.1"
   }
 }
