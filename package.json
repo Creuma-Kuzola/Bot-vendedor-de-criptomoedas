@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/Creuma-Kuzola/Bot-vendedor-de-criptomoedas/issues"
   },
-  "homepage": "https://github.com/Creuma-Kuzola/Bot-vendedor-de-criptomoedas#readme"
+  "homepage": "https://github.com/Creuma-Kuzola/Bot-vendedor-de-criptomoedas#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv-safe": "^8.2.0"
+  }
 }
