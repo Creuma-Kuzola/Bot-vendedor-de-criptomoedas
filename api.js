@@ -30,6 +30,15 @@ class MercadoBitcoinTrade{
         })
     }
 
+    placeSellOrder(qty, limit_price){
+        return this.call('place_sell_order',{
+            coin_pair: `BRL${this.config.CURRENCY}`, 
+            quantity: `${qty}` .substr(0,10),
+            limit_price: `${limit_price}`
+        })
+
+    }
+
     async call(method, parameters){
         const now = new Date().getTime();
         let queryString = qs.stringify({tapi_method:method, tapi_nonce:now});

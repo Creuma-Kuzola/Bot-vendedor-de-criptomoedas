@@ -15,14 +15,16 @@ async function getQuantity(coin, price, isBuy){
     price = parseFloat(price);
     coin = isBuy ? 'brl' : coin.toLowerCase();
     const data = await tradeApi.getAccountInfo();
-    const balance = parseFloat(data.balance[coin].available).toFixed(5);
+    const balance = parseFloat(data.balance[coin].available).toFixed(8);
+
+    if(!isBuy) return balance;
 
     if(isBuy && balance < 100) return console.error('Saldo insuficiente para comprar');
     console.log(`Saldo disponivel de ${coin}: ${balance}`);
 
     let qty = 0;
-    if(isBuy) qty = parseFloat((balance/price).toFixed(5));
-    return qty - 0.00001;
+    if(isBuy) qty = parseFloat((balance/price).toFixed(8));
+    return qty - 0.000000001;
 }
 
 setInterval( async() =>{
@@ -35,8 +37,12 @@ setInterval( async() =>{
 
     try {
       const qty = await getQuantity('BRL', response.ticker.sell,true)
-      const data = await tradeApi.placeBuyOrder(qty, response.ticker.sell);
-      console.log(qty); 
+      //const data = await tradeApi.placeBuyOrder(qty, response.ticker.sell);
+      console.log(qty);
+      const buyPrice = parseFloat(response.ticker.sell);
+      const profitability = parseFloat(process.env.PROFITABILITY); //LUCRO QUE EU PRETENDO GANHAR EM CADA COMPRA
+      const data2 = await tradeApi.placeSellOrder(data.quantity, buyPrice * profitability);
+      
     } catch (error) {
         
     }  
