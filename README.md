@@ -1,0 +1,1 @@
+# Bot-vendedor-de-criptomoedas
