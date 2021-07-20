@@ -1,10 +1,9 @@
-const TRADE_API = 'http://localhost:3001/';
+const TRADE_API = 'http://127.0.0.1:3001/';
 
 
 const axios = require('axios');
 const qs = require('querystring');
 const crypto = require('crypto');
-const BigNumber = require('big.js');
 const defaultDecimalPlace = '000000000000000000';
 
 class MercadoBitcoinTrade {
@@ -52,7 +51,7 @@ class MercadoBitcoinTrade {
     }
 
     placeBuyOrder(targetTokenName, offeredTokenName, quantTokensOffered, quantTokensTarget) {
-        return this.call('POST', 'placeBuyOrder', {
+        return this.call('POST', 'placeOrder', {
             "idEstudante": this.config.STUDENT_ID,
             "idConta": this.config.ACCOUNT_NUMBER,
             "privateKey": this.config.PRIVATE_KEY,
@@ -65,7 +64,7 @@ class MercadoBitcoinTrade {
     }
 
     placeSellOrder(targetTokenName, offeredTokenName, quantTokensOffered, quantTokensTarget) {
-        return this.call('POST', 'placeBuyOrder', {
+        return this.call('POST', 'placeOrder', {
             "idEstudante": this.config.STUDENT_ID,
             "idConta": this.config.ACCOUNT_NUMBER,
             "privateKey": this.config.PRIVATE_KEY,
@@ -94,7 +93,7 @@ class MercadoBitcoinTrade {
             data: bodyData,
         });
 
-        console.log(response.data);
+        console.log('response', response.data);
         return response.data;
     }
 }
