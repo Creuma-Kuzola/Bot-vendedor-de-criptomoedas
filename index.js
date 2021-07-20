@@ -11,22 +11,6 @@ const tradeApi = new MercadoBitcoinTrade({
     name: process.env.NAME
 })
 
-async function getQuantity(coin, price, isBuy) {
-    price = parseFloat(price);
-    coin = isBuy ? 'brl' : coin.toLowerCase();
-    const data = await tradeApi.balance();
-    //const balance = BigNumber(data.balances[coin]);
-
-
-    /*if (!isBuy) return balance;
-
-    if (isBuy && balance < 100) return console.error('Saldo insuficiente para comprar');
-    console.log(`Saldo disponivel de ${coin}: ${balance}`);
-
-    let qty = 0;
-    if (isBuy) qty = parseFloat((balance / price).toFixed(8));
-    return qty - 0.000000001;*/
-}
 let flagOrderPlaced = false
 let quantTransacoes = 0;
 
